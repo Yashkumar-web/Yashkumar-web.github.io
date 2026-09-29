@@ -1,0 +1,81 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ExternalLink } from 'lucide-react';
+
+const Portfolio = () => {
+  const projects = [
+    {
+      title: "Tech With Yash Blog",
+      category: "Website / Content",
+      image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjG8IpLLC3LxSWTIPIaCpJXXkGxIOwc-pezxYK1ndtznXYzTHs2pAsbXnEscrrKYd39LvYjo-Clu1AZ3xavyCbc_CVfykpeetj5MZMkyXIjXZ3XWBbnYpCq2Uqh__oXqmccxVb5z-zY8B3kothvM5M3LSJ_IiqKrC9zLK_zzIg8nLJyryXlqaP3wfYl_sM/s1536/new%20blog-optimized.webp",
+      link: "https://www.techwithyash.blog/",
+      desc: "A comprehensive tech blog covering AI, SEO, and digital tools."
+    },
+    {
+      title: "Digital Marketing Strategy",
+      category: "Marketing",
+      image: null, // No image, only text
+      link: "#",
+      desc: "Strategic online growth plan for local businesses focusing on conversion."
+    },
+    {
+      title: "AI Workflow Automation",
+      category: "AI",
+      image: null, // No image, only text
+      link: "#",
+      desc: "Implementing AI tools for content creation and operational efficiency."
+    }
+  ];
+
+  return (
+    <section id="portfolio" className="relative py-24 bg-secondary/50">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Selected <span className="premium-gradient-text">Work</span></h2>
+          <p className="text-text-muted">Real-world applications of digital marketing and design.</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((p, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              whileHover={{ y: -10 }}
+              className="glass-card group overflow-hidden relative flex flex-col"
+            >
+              {p.image && (
+                <div className="relative overflow-hidden aspect-video">
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent opacity-60" />
+                </div>
+              )}
+
+              <div className="p-6 flex-grow flex flex-col">
+                <span className="text-xs font-bold text-accent-indigo uppercase tracking-widest">{p.category}</span>
+                <h3 className="text-2xl font-bold mt-2 mb-3 group-hover:text-accent-indigo transition-colors">{p.title}</h3>
+                <p className="text-text-muted text-sm mb-6 flex-grow">{p.desc}</p>
+                <a
+                  href={p.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-white hover:gap-4 transition-all duration-300"
+                >
+                  View Project <ExternalLink size={14} />
+                </a>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Portfolio;
